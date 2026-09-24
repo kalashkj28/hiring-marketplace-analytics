@@ -19,7 +19,7 @@ st.set_page_config(
 # ── Load data ─────────────────────────────────────────────────────────────────
 @st.cache_data(ttl=60) # Cache for 60 seconds to allow live updates
 def load_data():
-    sheet_url = "https://docs.google.com/spreadsheets/d/1NrCVJUvbP1YFCzanC9G4TltgsLiaASaIXu1PYLhcHiM/export?format=csv"
+    sheet_url = "https://docs.google.com/spreadsheets/d/133YLXhIn7FRXdStSckbObZWCYcNTZZq87FZevoWSgKY/export?format=csv"
     df = pd.read_csv(sheet_url, parse_dates=["view_date", "view_week"])
     return df
 
