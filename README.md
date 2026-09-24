@@ -21,21 +21,19 @@ A live, auto-updating analytics dashboard for a hyperlocal, vernacular job marke
 Python generator (generate_data.py)
         |
         v
-Local CSVs (funnel, seekers, employers, jobs)
+Google Sheets (Live Data Source)     SQLite DB (marketplace.db)
+        |                                   |
+        v                                   v
+Streamlit App (dashboard.py)         SQL Validation (queries.sql)
         |
-        +-----------------------------------+
-        |                                   |
-        v                                   v
-Streamlit App (dashboard.py)         SQLite DB (marketplace.db)
-        |                                   |
-        v                                   v
-Interactive Dashboard                SQL Validation (queries.sql)
+        v
+Interactive Live Dashboard
 ```
 
 | Layer | Tool | Role |
 |---|---|---|
 | Data generation | Python (numpy, pandas) | Creates realistic marketplace data with planted patterns |
-| Storage | CSV / SQLite | Source of truth for the dashboard and validation |
+| Storage | Google Sheets / SQLite | Live source of truth for the dashboard and local validation |
 | Dashboard | Streamlit, Plotly | KPIs, interactive charts, data tables, and dynamic filtering |
 | Validation | SQL (SQLite) | Independent check of dashboard numbers |
 
@@ -122,17 +120,15 @@ sqlite3 marketplace.db     # then paste sql/queries.sql
 
 ```
 hiring-marketplace-analytics/
-  dashboard.py              # Streamlit dashboard code
+  dashboard.py              # Streamlit dashboard code (fetches live from Google Sheets)
   requirements.txt          # Python dependencies
   scripts/
-    generate_data.py        # generates 4 CSVs to data/
+    generate_data.py        # generates CSVs locally
   sql/
     queries.sql             # reconciliation + analysis queries
-    load_db.py              # loads CSVs into marketplace.db
+    load_db.py              # loads CSVs into SQLite
   docs/
     requirements.md         # business requirements (MoSCoW)
     kpi_definitions.md      # KPI dictionary
-    insights.md             # 6 findings with evidence and recommendations
-  data/
-    funnel.csv              # Dashboard data source (others ignored in git)
+    insights.md             # findings and recommendations
 ```
