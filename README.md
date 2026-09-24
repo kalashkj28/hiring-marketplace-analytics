@@ -9,11 +9,6 @@ A live analytics dashboard for a hyperlocal, vernacular job marketplace - built 
 
 ---
 
-## Screenshots
-
-*(Screenshots can be added here)*
-
----
 
 ## Architecture
 
