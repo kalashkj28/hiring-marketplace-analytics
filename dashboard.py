@@ -17,9 +17,10 @@ st.set_page_config(
 )
 
 # ── Load data ─────────────────────────────────────────────────────────────────
-@st.cache_data
+@st.cache_data(ttl=60) # Cache for 60 seconds to allow live updates
 def load_data():
-    df = pd.read_csv("data/funnel.csv", parse_dates=["view_date", "view_week"])
+    sheet_url = "https://docs.google.com/spreadsheets/d/1NrCVJUvbP1YFCzanC9G4TltgsLiaASaIXu1PYLhcHiM/export?format=csv"
+    df = pd.read_csv(sheet_url, parse_dates=["view_date", "view_week"])
     return df
 
 df_raw = load_data()
