@@ -2,7 +2,7 @@
 
 > ⚠️ **Synthetic data for portfolio purposes only.** All data was generated with a Python script. These are not real numbers or any real company's data.
 
-A live, auto-updating analytics dashboard for a hyperlocal, vernacular job marketplace - built using Python, Streamlit, Plotly, and pandas. 
+A live analytics dashboard for a hyperlocal, vernacular job marketplace - built using Python, Streamlit, Plotly, and pandas. 
 
 **Live Dashboard:** https://hiring-marketplace-analytics-28.streamlit.app/
 **Data covers:** 1 June 2026 - 29 August 2026 (90 days, synthetic)
@@ -95,7 +95,7 @@ python scripts/generate_data.py
 
 ## SQL Validation & Reconciliation
 
-All dashboard KPIs were independently validated against SQL queries run on the same CSV data loaded into SQLite.
+The six headline funnel counts were reconciled against SQL queries run on the same CSV data loaded into SQLite.
 
 **Run the validation:**
 ```bash
@@ -116,11 +116,20 @@ sqlite3 marketplace.db     # then paste sql/queries.sql
 
 ---
 
+## Limitations
+
+- **Synthetic data** - all patterns were designed in, not discovered from real user behavior.
+- **Google Sheets scale** - the funnel tab (~29K rows) is manageable, but for production >50K rows, a proper database (like BigQuery) is needed.
+- **Cache Delay** - The dashboard fetches from Google Sheets with a 60-second cache (TTL). Edits in the Sheet take up to a minute to reflect.
+- **No data quality checks** - a production pipeline would include deduplication, bot filtering, and timezone normalization.
+
+---
+
 ## Repo Structure
 
 ```
 hiring-marketplace-analytics/
-  dashboard.py              # Streamlit dashboard code (fetches live from Google Sheets)
+  dashboard.py              # Streamlit dashboard code (fetches data from Google Sheets)
   requirements.txt          # Python dependencies
   scripts/
     generate_data.py        # generates CSVs locally

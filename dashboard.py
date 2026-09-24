@@ -40,7 +40,7 @@ with st.sidebar:
     sel_cat  = st.selectbox("Category",  ["All"] + sorted(df_raw["category"].unique().tolist()))
     sel_chan = st.selectbox("Channel",   ["All"] + sorted(df_raw["acquisition_channel"].unique().tolist()))
 
-    st.caption("Data: Jun – Aug 2026 (synthetic)")
+    st.caption("Data: Jun to Aug 2026 (synthetic)")
 
 # ── Apply filters ─────────────────────────────────────────────────────────────
 df = df_raw.copy()
@@ -70,7 +70,7 @@ within24   = round(100 * (df["hours_to_first_response"] <= 24).sum() / applies, 
 st.title("Hiring Marketplace Analytics Dashboard")
 st.caption(
     "Tracking the job-seeker journey from view to hire across 21 Tier-2 & Tier-3 cities | "
-    "Jun – Aug 2026 | _Synthetic data for portfolio purposes_"
+    "Jun to Aug 2026 | _Synthetic data for portfolio purposes_"
 )
 st.divider()
 
@@ -451,7 +451,7 @@ with tab3:
         {
             "title": "6. Nagpur had a sharp 2-week dip in July (needs investigation)",
             "numbers": f"Nagpur view-to-apply dropped to ~6-9% in weeks of Jul 13 and Jul 20, vs its normal range of 17-30%",
-            "why": "Could be a tracking/data issue, a paused campaign, a drop in employer supply, or something local. Other comparable cities (Nashik, Patna) did not show the same dip.",
+            "why": "Could be a tracking/data issue, a paused campaign, a drop in employer supply, or something local. Other comparable cities did not show the same dip (e.g. Nashik went from 22.7% to 24.4%, Patna went from 24.4% to 23.0% during the same 15 days).",
             "recommendation": "Before assuming it's demand-side - check the data pipeline first. Then break down by channel and category to isolate where the drop came from.",
             "measure": "Watch Nagpur's weekly view-to-apply % for the next 4 weeks. If it normalises, it was probably a one-time event."
         }
